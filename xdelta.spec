@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) /usr/bin/xdelta
+%attr(755,root,root) %{_bindir}/xdelta
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_mandir}/man1/*
 
@@ -98,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {NEWS,READ*,ChangeLog}.gz
 
-%attr(755,root,root) /usr/bin/xdelta-config
+%attr(755,root,root) %{_bindir}/xdelta-config
 /usr/include/*
 
 %attr(755,root,root) %{_libdir}/lib*.so
@@ -127,7 +127,7 @@ rm -rf $RPM_BUILD_ROOT
   [1.0.3-1]
 - removed xdelta.magic from %doc (it is integrated in current file package),
 - added "Requires: glib = 1.2.0" to main,
-- /usr/bin/xdelta-config moved to devel,
+- %{_bindir}/xdelta-config moved to devel,
 - removed xdelta info pages (it is empty .. contain only GPL licence text),
 - removed man group from man pages.
 
