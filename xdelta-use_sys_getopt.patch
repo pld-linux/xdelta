@@ -1,0 +1,11 @@
+--- xdelta-1.1.1/Makefile.am~	Sat Apr 10 03:10:03 1999
++++ xdelta-1.1.1/Makefile.am	Thu Sep  6 18:42:14 2001
+@@ -4,7 +4,7 @@
+ bin_PROGRAMS    = xdelta
+ bin_SCRIPTS	= xdelta-config
+ 
+-xdelta_SOURCES  = xdmain.c getopt.c getopt1.c
++xdelta_SOURCES  = xdmain.c
+ 
+ xdelta_LDADD    = libxdelta.la				\
+ 		  $(top_srcdir)/libedsio/libedsio.la	\
