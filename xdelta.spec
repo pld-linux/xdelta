@@ -8,6 +8,7 @@ Release:	2
 License:	GPL
 Group:		Development/Version Control
 Source0:	http://dl.sourceforge.net/xdelta/%{name}-%{version}.tar.gz
+# Source0-md5:	08e964c28541605b6fe61c0dd6595516
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-use_sys_getopt.patch
 Patch2:		%{name}-am15.patch
