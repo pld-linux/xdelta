@@ -95,9 +95,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc NEWS README
 /usr/include/*
 /usr/info/*
-/usr/lib/lib*.a
 /usr/lib/lib*.so
 
+%files static
+%attr(644, root, 644) /usr/lib/lib*.a
 %changelog
 * Mon Aug 10 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.22-2]
