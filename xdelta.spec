@@ -99,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc {NEWS,READ*,ChangeLog}.gz
 
 %attr(755,root,root) %{_bindir}/xdelta-config
-/usr/include/*
+%{_includedir}/*
 
 %attr(755,root,root) %{_libdir}/lib*.so
 
