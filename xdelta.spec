@@ -37,7 +37,6 @@ Summary:	XDELTA - header files
 Summary(pl):	XDELTA - pliki nag³ówkowe
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
-PreReq:		/sbin/install-info
 Requires:	%{name} = %{version}
 
 %description devel
