@@ -4,13 +4,14 @@ Summary(pl):	XDELTA - system kontroli wersji
 Summary(pt_BR):	patch e diff para arquivos binários
 Name:		xdelta
 Version:	1.1.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Version Control
 Source0:	http://prdownloads.sourceforge.net/xdelta/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-use_sys_getopt.patch
 Patch2:		%{name}-am15.patch
+Patch3:		%{name}-ac25x.patch
 URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -94,6 +95,7 @@ Bibliotecas estáticas para desenvolvimento com xdelta.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 rm -f missing
@@ -101,8 +103,8 @@ rm -f missing
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure \
-	--x-includes=%{_prefix}/X11R6/lib/glib/include
+%configure
+
 %{__make}
 
 %install
@@ -112,25 +114,25 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
 
-gzip -9nf NEWS READ* ChangeLog
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(644,root,root,755)
+%doc NEWS READ*
 %attr(755,root,root) %{_bindir}/xdelta
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
-%doc {NEWS,READ*,ChangeLog}.gz
+%doc ChangeLog
 %attr(755,root,root) %{_bindir}/xdelta-config
 %attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/lib*.la
 %{_aclocaldir}/*
 %{_includedir}/*
 
