@@ -106,10 +106,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-
-%changelog
-* Fri May 28 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.1.1-2]
-- based on spec from RH contrib,
-- spec rewrited by PLD team,
-- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>.
