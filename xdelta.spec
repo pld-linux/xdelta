@@ -1,7 +1,7 @@
 Summary:	XDELTA - version control system
 Summary(pl):	XDELTA - system kontroli wersji
 Name:		xdelta
-Version:	1.0.3
+Version:	1.0.6
 Release:	1
 Copyright:	GPL
 Group:		Development/Version Control
@@ -9,7 +9,6 @@ Group(pl):	Programowanie/Kontrola Wersji
 Source:		ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz
 URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html                                                   
 Requires:	glib = 1.2.0
-PreReq:		/sbin/install-info
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -36,6 +35,7 @@ Summary:	XDELTA - header files
 Summary(pl):	XDELTA - pliki nag³ówkowe
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
+PreReq:		/sbin/install-info
 Requires:	%{name} = %{version}
 
 %description devel
@@ -110,6 +110,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) /usr/lib/lib*.a
 
 %changelog
+* Sun Mar 21 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0.6-1]
+- fix: "PreReq: /sbin/install-info" moved to devel.
+
 * Mon Mar  1 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.3-1]
 - removed xdelta.magic from %doc (it is integrated in current file package),
