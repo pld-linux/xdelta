@@ -2,13 +2,13 @@ Summary:	XDELTA - version control system
 Summary(pl):	XDELTA - system kontroli wersji
 Name:		xdelta
 Version:	1.0.6
-Release:	1
+Release:	2
 Copyright:	GPL
 Group:		Development/Version Control
 Group(pl):	Programowanie/Kontrola Wersji
 Source:		ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz
 URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html                                                   
-Requires:	glib = 1.2.0
+Requires:	glib = 1.2.1
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
