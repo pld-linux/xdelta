@@ -1,16 +1,14 @@
 Summary:	XDELTA - version control system
 Summary(pl):	XDELTA - system kontroli wersji
 Name:		xdelta
-Version:	1.0.2
-Release:	1d
+Version:	1.0.3
+Release:	1
 Copyright:	GPL
 Group:		Development/Version Control
 Group(pl):	Programowanie/Kontrola Wersji
-#######		ftp://www.xcf.berkeley.edu/pub/xdelta
-Source:		%{name}-%{version}.tar.gz
-Patch0:         xdelta-info.patch
-Patch1:         xdelta-zlib.patch
+Source:		ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz
 URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html                                                   
+Requires:	glib = 1.2.0
 PreReq:		/sbin/install-info
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -63,13 +61,9 @@ Pakiet ten zawiera bibliotekê statyczn± XDELTA.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
-aclocal
-libtoolize --force
-CFLAGS=$RPM_OPT_FLAGS LDFLAGS=-s \
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure \
 	--prefix=/usr \
 	--x-includes=/usr/X11R6/lib/glib/include
@@ -81,11 +75,8 @@ install -d $RPM_BUILD_ROOT/usr/info
 
 make prefix=$RPM_BUILD_ROOT/usr install-strip
 
-install doc/xdelta.info $RPM_BUILD_ROOT/usr/info
-
-gzip -9nf $RPM_BUILD_ROOT/usr/{info/*.info*,man/man1/*}
-
-bzip2 -9 NEWS READ* xdelta.magic ChangeLog
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/*
+bzip2 -9 NEWS READ* ChangeLog
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -94,38 +85,42 @@ bzip2 -9 NEWS READ* xdelta.magic ChangeLog
 /sbin/install-info /usr/info/xdelta.info.gz /etc/info-dir
 
 %preun devel
-if [ $1 = 0 ]; then
-    /sbin/install-info --delete /usr/info/xdelta.info.gz /etc/info-dir
+if [ "$1" = "0" ]; then
+	/sbin/install-info --delete /usr/info/xdelta.info.gz /etc/info-dir
 fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(644,root,root,755)
-
-%attr(755,root,root) /usr/bin/*
-%attr(755,root,root) /usr/lib/*.so.*
-%attr(644,root, man) /usr/man/man1/*
+%attr(755,root,root) /usr/bin/xdelta
+%attr(755,root,root) /usr/lib/lib*.so.*.*
+/usr/man/man1/*
 
 %files devel
 %defattr(644,root,root,755)
-%doc NEWS.bz2 READ* xdelta.magic.bz2 ChangeLog.bz2
+%doc NEWS.bz2 READ* ChangeLog.bz2
 
+%attr(755,root,root) /usr/bin/xdelta-config
 /usr/include/*
-/usr/info/xdelta.*
 
-%attr(755,root,root) /usr/lib/*.so
+%attr(755,root,root) /usr/lib/lib*.so
 
 %files static
-%defattr(644,root,root,755) 
-/usr/lib/lib*.a
+%attr(644,root,root) /usr/lib/lib*.a
 
 %changelog
+* Mon Mar  1 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0.3-1]
+- removed xdelta.magic from %doc (it is integrated in current file package),
+- added "Requires: glib = 1.2.0" to main,
+- /usr/bin/xdelta-config moved to devel,
+- removed xdelta info pages (it is empty .. contain only GPL licence text),
+- removed man group from man pages.
+
 * Fri Feb 05 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [1.0.2-1d]
 - updated to 1.0.2,
-- fixed -lz problem ? ;)
 - fixed permission of static library.
 
 * Sat Jan 23 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
