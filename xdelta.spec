@@ -11,7 +11,7 @@ URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html
 BuildRequires:	glib-devel >= 1.2.0
 BuildRequires:	zlib-devel
 Requires:	glib >= 1.2.0
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 XDelta (X for XCF: the eXperimental Computing Facility at Berkeley) is a
