@@ -2,7 +2,7 @@ Summary:	XDELTA - version control system
 Summary(pl):	XDELTA - system kontroli wersji
 Name:		xdelta
 Version:	1.0.0
-Release:	3d
+Release:	3
 Copyright:	GPL
 Group:		Development/Version Control
 Group(pl):	Programowanie/Kontrola Wersji
@@ -117,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Sat Jan 23 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.0.0-3d]
+  [1.0.0-3]
 - removed xdelta.magic from doc (this is now included in latest file packa).
 - changed --x-includes to /usr/X11R6/lib/glib/include,
 - standarized {un}registering info pages (added xdelta-info.patch),
