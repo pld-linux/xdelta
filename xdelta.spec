@@ -7,7 +7,7 @@ Version:	1.1.3
 Release:	2
 License:	GPL
 Group:		Development/Version Control
-Source0:	http://prdownloads.sourceforge.net/xdelta/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/xdelta/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-use_sys_getopt.patch
 Patch2:		%{name}-am15.patch
