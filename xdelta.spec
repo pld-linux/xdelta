@@ -1,14 +1,15 @@
-Summary:     XDELTA - version control system
-Summary(pl): XDELTA - system kontroli wersji
-Name:        xdelta
-Version:     1.0.0
-Release:     3
-Copyright:   GPL
-Group:       Development/Version Control
-Source:      ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz
-URL:         http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html
-PreReq:      /sbin/install-info
-BuildRoot:   /tmp/%{name}-%{version}-root
+Summary:	XDELTA - version control system
+Summary(pl):	XDELTA - system kontroli wersji
+Name:		xdelta
+Version:	1.0.0
+Release:	3d
+Copyright:	GPL
+Group:		Development/Version Control
+Group(pl):	Programowanie/Kontrola Wersji
+URL:		ftp://www.xcf.berkeley.edu/pub/xdelta
+Source:		%{name}-%{version}.tar.gz
+PreReq:		/sbin/install-info
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 XDELTA (`X' for XCF) is a version-control library and file-format designed as
@@ -20,34 +21,36 @@ XDELTA uses a binary file-delta algorithm to replace the standard diff
 program used by RCS.
 
 %description -l pl
-XDELTA (`X' od XCF) jest to biblioteka systemu kontroli wersji tworona jako
+XDELTA (`X' od XCF) jest bibliotek± systemu kontroli wersji tworzona jako
 zamiennik RCS. Biblioteka XDELTA wykonuje ró¿ne czynno¶ci niezale¿nie od
-bierz±cego formatu plików u¿ywanych do kodowania plików baz danech systemu
-kontroli wersji zaprojektowana jest do u¿ywania w ró¿nych wysoko poziomowych
-syatemach kontroli wersji jak PRCS.
+bierz±cego formatu plików, u¿ywanych do kodowania plików baz danych, systemu
+kontroli wersji i zaprojektowana jest do u¿ywania w ró¿nych wysoko-poziomowych
+systemach kontroli wersji jak PRCS.
 
 XDELTA u¿ywa binarnego formatu zamiast standardowego diif-a u¿ywanego przez
 RCS.
 
 %package devel
-Summary:     XDELTA - header files
-Summary(pl): XDELTA - pliki nag³ówkowe
-Group:       Development/Libraries
-Requires:    %{name} = %{version}
+Summary:	XDELTA - header files
+Summary(pl):	XDELTA - pliki nag³ówkowe
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name} = %{version}
 
 %description devel
 This package contains the XDELTA header files required to develop
 XDELTA-based applications.
 
 %description -l pl devel
-Pakiet ten zawiera pliki nag³owkowe potrzebne przy tworzeniu aplikacji
+Pakiet ten zawiera pliki nag³ówkowe potrzebne przy tworzeniu aplikacji
 bazuj±cych na XDELTA.
 
 %package static
-Summary:     XDELTA - static library
-Summary(pl): XDELTA - biblioteka statyczna
-Group:       Development/Libraries
-Requires:    %{name}-devel = %{version}
+Summary:	XDELTA - static library
+Summary(pl):	XDELTA - biblioteka statyczna
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-devel = %{version}
 
 %description static
 This package contains the XDELTA static libraries
@@ -59,57 +62,67 @@ Pakiet ten zawiera bibliotekê statyczn± XDELTA.
 %setup -q
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure \
+CFLAGS=$RPM_OPT_FLAGS LDFLAGS=-s \
+    ./configure	\
 	--prefix=/usr \
-	--x-includes=/usr/X11R6/lib/glib/include
-
+	--x-includes=/usr/lib/glib/include
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/info
 
+install -d $RPM_BUILD_ROOT/usr/info
 make prefix=$RPM_BUILD_ROOT/usr install-strip
+
 install doc/xdelta.info $RPM_BUILD_ROOT/usr/info
 
-strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
+gzip -9nf $RPM_BUILD_ROOT/usr/info/xdelta.info
 
-gzip -9nf $RPM_BUILD_ROOT/usr/{info/xdelta*,man/man1/*}
+bzip2 -9 $RPM_BUILD_ROOT/usr/man/man1/* NEWS READ* xdelta.magic ChangeLog
+
+chmod 755 $RPM_BUILD_ROOT/usr/lib/*.so.*
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info /usr/info/xdelta.info.gz /etc/info-dir \
-	--section "Version Control:" --entry \
-	"* XDELTA: (xdelta).                             A new RCS-like version-file format."
+/sbin/install-info /usr/info/xdelta.info.gz /etc/info-dir
 
 %preun devel
 if [ $1 = 0 ]; then
-	/sbin/install-info --delete /usr/info/xdelta.info.gz /etc/info-dir
+   /sbin/install-info --delete /usr/info/xdelta.info.gz /etc/info-dir
 fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(755, root, root)
-/usr/bin/*
-/usr/lib/lib*.so.*.*
-%attr(644, root,  man) /usr/man/man1/*
+%defattr(644,root,root,755)
+
+%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) /usr/lib/*.so.*
+%attr(644,root, man) /usr/man/man1/*
 
 %files devel
-%defattr(644, root, root, 755)
-%doc NEWS README
+%defattr(644,root,root,755)
+%doc NEWS.bz2 READ* xdelta.magic.bz2 ChangeLog.bz2
+
 /usr/include/*
-/usr/info/xdelta.info*
-/usr/lib/lib*.so
+/usr/info/xdelta.*
+
+%attr(755,root,root) /usr/lib/*.so
 
 %files static
-%attr(644, root, 644) /usr/lib/lib*.a
+%attr(644,root,root,755) /usr/lib/lib*.a
 
 %changelog
+* Sat Jan 23 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [1.0.0-3d]
+- added Group(pl),  
+- compressed man pages && documentation (bizp2),
+- fixed %post && %preun,
+- fixed static-subpackage.
+
 * Wed Dec 23 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.0-3]
 - standarized {un}registering info pages,
@@ -124,6 +137,13 @@ rm -rf $RPM_BUILD_ROOT
 - removed xdelta.magic and non existing doc/xdelta.txt from %doc,
 - fixed --entry text on {un}registering info page for libtool in %post
   %preun in devel.
+
+* Sat Oct 03 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [0.23-1d]
+- build against Tornado,
+- fixed pl translation,
+- fixed files permissions,
+- minor modifications of the spec file.
 
 * Mon Aug 10 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.22-2]
@@ -173,7 +193,7 @@ rm -rf $RPM_BUILD_ROOT
 - added using predefined macro %%{PACKAGE_VERSION} instead %{version},
 - changed permission on /usr/lib/lib*.so links to 644,
 - removed /usr/lib/libxdelta.la from devel,
-- added stripping /usr/lib/lib*.so.*.* libs,
+- added striping /usr/lib/lib*.so.*.* libs,
 - Buildroot changed to /tmp/xdelta-%%{PACKAGE_VERSION}-root.
 
 * Fri Apr 24 1998 Arne Coucheron <arneco@online.no>
