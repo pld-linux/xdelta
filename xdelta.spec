@@ -8,7 +8,7 @@ Group:		Development/Version Control
 Group(pl):	Programowanie/Kontrola Wersji
 Source:		ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz
 URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html
-BuildPrereq:	glib-devel
+BuildPrereq:	glib-devel >= 1.2.0
 BuildPrereq:	zlib-devel
 Requires:	glib >= 1.2.0
 BuildRoot:	/tmp/%{name}-%{version}-root
