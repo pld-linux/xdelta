@@ -5,7 +5,7 @@ Version:	1.1.1
 Release:	4
 Copyright:	GPL
 Group:		Development/Version Control
-Group(pl):	Programowanie/Kontrola Wersji
+Group(pl):	Programowanie/Zarz±dzanie wersjami
 Source:		ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz
 URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html
 BuildRequires:	glib-devel >= 1.2.0
