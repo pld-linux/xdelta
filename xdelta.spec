@@ -49,7 +49,7 @@ archivos binarios.
 %description -l pl
 XDELTA (`X' od XCF) jest bibliotek± systemu kontroli wersji tworzona
 jako zamiennik RCS. Biblioteka XDELTA wykonuje ró¿ne czynno¶ci
-niezale¿nie od bierz±cego formatu plików, u¿ywanych do kodowania
+niezale¿nie od bie¿±cego formatu plików, u¿ywanych do kodowania
 plików baz danych, systemu kontroli wersji i zaprojektowana jest do
 u¿ywania w ró¿nych wysoko-poziomowych systemach kontroli wersji jak
 PRCS.
