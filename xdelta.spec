@@ -2,7 +2,7 @@ Summary:     XDELTA - version control system
 Summary(pl): XDELTA - system kontroli wersji
 Name:        xdelta
 Version:     1.0.0
-Release:     1
+Release:     2
 Copyright:   GPL
 Group:       Development/Version Control
 Source:      ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz
@@ -74,10 +74,12 @@ strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info /usr/info/xdelta.info.gz /usr/info/dir
+/sbin/install-info /usr/info/xdelta.info.gz /usr/info/dir --entry \
+"* XDELTA: (xdelta).                             A new RCS-like version-file format."
 
 %preun devel
-/sbin/install-info --delete /usr/info/xdelta.info.gz /usr/info/dir
+/sbin/install-info --delete /usr/info/xdelta.info.gz /usr/info/dir --entry \
+"* XDELTA: (xdelta).                             A new RCS-like version-file format."
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -99,6 +101,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644, root, 644) /usr/lib/lib*.a
 
 %changelog
+* Thu Nov 26 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0.0-2]
+- removed xdelta.magic and non existing doc/xdelta.txt from %doc,
+- fixed --entry text on {un}registering info page for libtool in %post
+  %preun in devel.
+
 * Mon Aug 10 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.22-2]
 - added pl translation,
