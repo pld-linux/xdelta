@@ -63,7 +63,6 @@ arquivos bin·rios.
 
 %package devel
 Summary:	XDELTA - header files
-Summary(es):	xdelta development files
 Summary(pl):	XDELTA - pliki nag≥Ûwkowe
 Summary(pt_BR):	Arquivos de desenvolvimento xdelta
 Group:		Development/Libraries
@@ -80,9 +79,6 @@ Requires:	%{name} = %{version}
 This package contains the XDELTA header files required to develop
 XDELTA-based applications.
 
-%description -l es devel
-xdelta development files.
-
 %description -l pl devel
 Pakiet ten zawiera pliki nag≥Ûwkowe potrzebne przy tworzeniu aplikacji
 bazuj±cych na XDELTA.
@@ -92,7 +88,6 @@ Esse pacote contÈm os arquivos de desenvolvimento do xdelta.
 
 %package static
 Summary:	XDELTA - static library
-Summary(es):	Static libraries for xdelta development
 Summary(pl):	XDELTA - biblioteka statyczna
 Summary(pt_BR):	Bibliotecas est·ticas para desenvolvimento com xdelta
 Group:		Development/Libraries
@@ -106,10 +101,7 @@ Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
 Requires:	%{name}-devel = %{version}
 
 %description static
-This package contains the XDELTA static libraries
-
-%description -l es static
-Static libraries for xdelta development.
+This package contains the XDELTA static libraries.
 
 %description -l pl static
 Pakiet ten zawiera bibliotekÍ statyczn± XDELTA.
