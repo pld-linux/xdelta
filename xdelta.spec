@@ -79,6 +79,8 @@ Pakiet ten zawiera bibliotekê statyczn± XDELTA.
 %setup -q
 
 %build
+libtoolize -c -f
+aclocal
 autoconf
 %configure \
 	--x-includes=%{_prefix}/X11R6/lib/glib/include
