@@ -4,7 +4,7 @@ Summary(pl):	XDELTA - system kontroli wersji
 Summary(pt_BR):	patch e diff para arquivos binários
 Name:		xdelta
 Version:	1.1.3
-Release:	2
+Release:	3
 License:	GPL
 Group:		Development/Version Control
 Source0:	http://dl.sourceforge.net/xdelta/%{name}-%{version}.tar.gz
@@ -13,6 +13,7 @@ Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-use_sys_getopt.patch
 Patch2:		%{name}-am15.patch
 Patch3:		%{name}-ac25x.patch
+Patch4:		%{name}-am18.patch
 URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -27,7 +28,7 @@ a library interface and binary delta generator (like a diff program
 for binaries) and an RCS. These changes (deltas) are similar to the
 output of the "diff" program in that they may be used to store and
 transmit only the changes between files. However, unlike diff, the
-output of XDelta is not expressed in a human-readable format--XDelta
+output of XDelta is not expressed in a human-readable format - XDelta
 can also also apply these deltas to a copy of the original file(s).
 XDelta uses a fast, linear algorithm and performs well on both binary
 and text files. XDelta typically outperforms GNU diff in both time and
@@ -35,7 +36,7 @@ generated-delta-size, even for plain text files. XDelta also includes
 a simple implementation of the Rsync algorithm and several advanced
 features for implementing RCS-like file-archival with.
 
-The Xdelta library performs its work independently of the actual
+The XDelta library performs its work independently of the actual
 format used to encode the file and is intended to be used by various
 higher-level programs such as XCF's Project Revision Control System
 (PRCS). PRCS is a front end for a version control toolset. Xdelta uses
@@ -47,11 +48,29 @@ xdelta es como las órdenes patch y diff, pero también funciona con
 archivos binarios.
 
 %description -l pl
-XDELTA (`X' od XCF) jest bibliotek± systemu kontroli wersji tworzona
-jako zamiennik RCS. Biblioteka XDELTA wykonuje ró¿ne czynno¶ci
-niezale¿nie od bie¿±cego formatu plików, u¿ywanych do kodowania plików
-baz danych, systemu kontroli wersji i zaprojektowana jest do u¿ywania
-w ró¿nych wysoko-poziomowych systemach kontroli wersji jak PRCS.
+XDelta (`X' od XCF - eXperimental Computing Facility w Berkeley) jest
+bibliotek± i generatorem binarnych delt (ró¿nic podobnych do tych
+tworzonych przez program diff, ale dla binariów) oraz systemem
+kontroli wersji. Te zmiany (delty) s± podobne do wyj¶cia programu diff
+tak¿e w tym, ¿e mog± byæ u¿ywane do przechowywania i transmisji tylko
+zmian miêdzy plikami. Jednak, w przeciwieñstwie do diffa, wyj¶cie
+XDelty nie jest wyra¿one w postaci czytelnej dla cz³owieka; XDelta
+mo¿e tak¿e nanie¶æ te zmiany na kopiê oryginalnego pliku (plików).
+XDelta u¿ywa szybkiego, liniowego algorytmu i dobrze siê sprawdza
+zarówno na binarnych, jak i tekstowych plikach. Algorytm XDelta zwykle
+jest wydajniejszy od GNU diffa zarówno pod wzglêdem czasu jak i
+rozmiaru wygenerowanych ró¿nic, nawet dla plików czysto tekstowych.
+XDelta zawiera tak¿e przyk³adow± implementacjê algorytmy Rsync i kilka
+zaawansowanych mo¿liwo¶ci do implementowania archiwizacji plików
+podobnej do RCS.
+
+Biblioteka XDelta dzia³a dobrze niezale¿nie od formatu u¿ytego przy
+kodowaniu pliku i jest przeznaczona do u¿ywania w ró¿nych
+wysokopoziomowych programach takich jak system kontroli wersji z XCF
+(PRCS - Project Revision Control System), bêd±cy frontendem do
+zbioru narzêdzi s³u¿±cych do kontroli wersji, w którym jest u¿ywany
+algorytm binarnych ró¿nic XDelta zamiast standardowego diffa u¿ywanego
+przez RCS.
 
 %description -l pt_BR
 xdelta é como os comandos patch e diff, mas também funciona com
@@ -97,12 +116,13 @@ Bibliotecas estáticas para desenvolvimento com xdelta.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
-rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure
 
