@@ -7,8 +7,10 @@ Copyright:	GPL
 Group:		Development/Version Control
 Group(pl):	Programowanie/Kontrola Wersji
 Source:		ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz
-URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html                                                   
-Requires:	glib = 1.2.0
+URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html
+BuildPrereq:	glib-devel >= 1.1.15
+BuildPrereq:	zlib-devel
+%requires_pkg	glib
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -87,6 +89,7 @@ gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/* \
 rm -rf $RPM_BUILD_ROOT
 
 %files
+%defattr(644,root,root,755)
 %attr(755,root,root) /usr/bin/xdelta
 %attr(755,root,root) /usr/lib/lib*.so.*.*
 /usr/man/man1/*
@@ -101,7 +104,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/lib/lib*.so
 
 %files static
-%attr(644,root,root) /usr/lib/lib*.a
+%defattr(644,root,root,755)
+/usr/lib/lib*.a
 
 %changelog
 * Sun Mar 21 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
