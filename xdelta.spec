@@ -98,7 +98,7 @@ Bibliotecas estáticas para desenvolvimento com xdelta.
 %build
 rm -f missing
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
