@@ -47,10 +47,9 @@ archivos binarios.
 %description -l pl
 XDELTA (`X' od XCF) jest bibliotek± systemu kontroli wersji tworzona
 jako zamiennik RCS. Biblioteka XDELTA wykonuje ró¿ne czynno¶ci
-niezale¿nie od bie¿±cego formatu plików, u¿ywanych do kodowania
-plików baz danych, systemu kontroli wersji i zaprojektowana jest do
-u¿ywania w ró¿nych wysoko-poziomowych systemach kontroli wersji jak
-PRCS.
+niezale¿nie od bie¿±cego formatu plików, u¿ywanych do kodowania plików
+baz danych, systemu kontroli wersji i zaprojektowana jest do u¿ywania
+w ró¿nych wysoko-poziomowych systemach kontroli wersji jak PRCS.
 
 %description -l pt_BR
 xdelta é como os comandos patch e diff, mas também funciona com
@@ -67,11 +66,11 @@ Requires:	%{name} = %{version}
 This package contains the XDELTA header files required to develop
 XDELTA-based applications.
 
-%description -l pl devel
+%description devel -l pl
 Pakiet ten zawiera pliki nag³ówkowe potrzebne przy tworzeniu aplikacji
 bazuj±cych na XDELTA.
 
-%description -l pt_BR devel
+%description devel -l pt_BR
 Esse pacote contém os arquivos de desenvolvimento do xdelta.
 
 %package static
@@ -84,10 +83,10 @@ Requires:	%{name}-devel = %{version}
 %description static
 This package contains the XDELTA static libraries.
 
-%description -l pl static
+%description static -l pl
 Pakiet ten zawiera bibliotekê statyczn± XDELTA.
 
-%description -l pt_BR static
+%description static -l pt_BR
 Bibliotecas estáticas para desenvolvimento com xdelta.
 
 %prep
