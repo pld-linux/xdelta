@@ -2,7 +2,7 @@ Summary:	XDELTA - version control system
 Summary(pl):	XDELTA - system kontroli wersji
 Name:		xdelta
 Version:	1.1.1
-Release:	4
+Release:	5
 License:	GPL
 Group:		Development/Version Control
 Group(de):	Entwicklung/Versionkontrolle
@@ -80,9 +80,7 @@ Pakiet ten zawiera bibliotekê statyczn± XDELTA.
 
 %build
 autoconf
-CFLAGS="%{rpmcflags}" LDFLAGS="%{rpmldflags}" \
-./configure %{_target_platform}\
-	--prefix=%{_prefix} \
+%configure \
 	--x-includes=%{_prefix}/X11R6/lib/glib/include
 %{__make}
 
@@ -90,7 +88,7 @@ CFLAGS="%{rpmcflags}" LDFLAGS="%{rpmldflags}" \
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_infodir}
 
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 gzip -9nf NEWS READ* ChangeLog
 
