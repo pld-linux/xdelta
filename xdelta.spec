@@ -156,7 +156,7 @@ rm -rf $RPM_BUILD_ROOT
 - added using predefined macro %%{PACKAGE_VERSION} instead %{version},
 - changed permission on /usr/lib/lib*.so links to 644,
 - removed /usr/lib/libxdelta.la from devel,
-- added striping /usr/lib/lib*.so.*.* libs,
+- added stripping /usr/lib/lib*.so.*.* libs,
 - Buildroot changed to /tmp/xdelta-%%{PACKAGE_VERSION}-root.
 
 * Fri Apr 24 1998 Arne Coucheron <arneco@online.no>
