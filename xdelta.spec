@@ -77,9 +77,7 @@ strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 /sbin/install-info /usr/info/xdelta-rcs.info.gz /usr/info/dir
 
 %preun devel
-if [ $1 = 0 ]; then
-   /sbin/install-info --delete /usr/info/xdelta-rcs.info.gz /usr/info/dir
-fi
+/sbin/install-info --delete /usr/info/xdelta-rcs.info.gz /usr/info/dir
 
 %clean
 rm -rf $RPM_BUILD_ROOT
