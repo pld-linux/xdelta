@@ -75,19 +75,13 @@ install -d $RPM_BUILD_ROOT/usr/info
 
 make prefix=$RPM_BUILD_ROOT/usr install-strip
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/*
-bzip2 -9 NEWS READ* ChangeLog
+strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
+
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/* \
+	NEWS READ* ChangeLog
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
-
-%post devel
-/sbin/install-info /usr/info/xdelta.info.gz /etc/info-dir
-
-%preun devel
-if [ "$1" = "0" ]; then
-	/sbin/install-info --delete /usr/info/xdelta.info.gz /etc/info-dir
-fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -99,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc NEWS.bz2 READ* ChangeLog.bz2
+%doc {NEWS,READ*,ChangeLog}.gz
 
 %attr(755,root,root) /usr/bin/xdelta-config
 /usr/include/*
@@ -112,7 +106,8 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Sun Mar 21 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.6-1]
-- fix: "PreReq: /sbin/install-info" moved to devel.
+- fix: "PreReq: /sbin/install-info" moved to devel,
+- strip with --strip-unneeded shared libraries.
 
 * Mon Mar  1 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.3-1]
