@@ -65,8 +65,8 @@ make
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/usr/info
 make prefix=$RPM_BUILD_ROOT/usr install-strip
-install doc/xdelta-rcs.info $RPM_BUILD_ROOT/usr/info
-gzip -9nf $RPM_BUILD_ROOT/usr/info/xdelta-rcs.info
+install doc/xdelta.info $RPM_BUILD_ROOT/usr/info
+gzip -9nf $RPM_BUILD_ROOT/usr/info/xdelta.info
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
@@ -74,10 +74,10 @@ strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info /usr/info/xdelta-rcs.info.gz /usr/info/dir
+/sbin/install-info /usr/info/xdelta.info.gz /usr/info/dir
 
 %preun devel
-/sbin/install-info --delete /usr/info/xdelta-rcs.info.gz /usr/info/dir
+/sbin/install-info --delete /usr/info/xdelta.info.gz /usr/info/dir
 
 %clean
 rm -rf $RPM_BUILD_ROOT
