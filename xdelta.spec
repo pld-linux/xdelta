@@ -2,10 +2,11 @@ Summary:     XDELTA - version control system
 Summary(pl): XDELTA - system kontroli wersji
 Name:        xdelta
 Version:     1.0.0
-Release:     2
+Release:     3
 Copyright:   GPL
 Group:       Development/Version Control
 Source:      ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz
+URL:         http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html
 PreReq:      /sbin/install-info
 BuildRoot:   /tmp/%{name}-%{version}-root
 
@@ -33,6 +34,7 @@ Summary:     XDELTA - header files
 Summary(pl): XDELTA - pliki nag³ówkowe
 Group:       Development/Libraries
 Requires:    %{name} = %{version}
+
 %description devel
 This package contains the XDELTA header files required to develop
 XDELTA-based applications.
@@ -46,6 +48,7 @@ Summary:     XDELTA - static library
 Summary(pl): XDELTA - biblioteka statyczna
 Group:       Development/Libraries
 Requires:    %{name}-devel = %{version}
+
 %description static
 This package contains the XDELTA static libraries
 
@@ -56,30 +59,36 @@ Pakiet ten zawiera bibliotekê statyczn± XDELTA.
 %setup -q
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" \
-./configure	--prefix=/usr \
-		--x-includes=/usr/lib/glib/include
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+./configure \
+	--prefix=/usr \
+	--x-includes=/usr/X11R6/lib/glib/include
+
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/usr/info
+
 make prefix=$RPM_BUILD_ROOT/usr install-strip
 install doc/xdelta.info $RPM_BUILD_ROOT/usr/info
-gzip -9nf $RPM_BUILD_ROOT/usr/info/xdelta.info
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
+
+gzip -9nf $RPM_BUILD_ROOT/usr/{info/xdelta*,man/man1/*}
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info /usr/info/xdelta.info.gz /usr/info/dir --entry \
-"* XDELTA: (xdelta).                             A new RCS-like version-file format."
+/sbin/install-info /usr/info/xdelta.info.gz /etc/info-dir \
+	--section "Version Control:" --entry \
+	"* XDELTA: (xdelta).                             A new RCS-like version-file format."
 
 %preun devel
-/sbin/install-info --delete /usr/info/xdelta.info.gz /usr/info/dir --entry \
-"* XDELTA: (xdelta).                             A new RCS-like version-file format."
+if [ $1 = 0 ]; then
+	/sbin/install-info --delete /usr/info/xdelta.info.gz /etc/info-dir
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -101,6 +110,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644, root, 644) /usr/lib/lib*.a
 
 %changelog
+* Wed Dec 23 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0.0-3]
+- standarized {un}registering info pages,
+- xdelta info pages moved to section "Version Control:",
+- added gzipping man pages,
+- added URL,
+- added using LDFLAGS="-s" to ./configure enviroment.
+
 * Thu Nov 26 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.0-2]
 - fixed: removed /usr/info/dir from devel,
