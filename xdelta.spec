@@ -77,7 +77,7 @@ install -d $RPM_BUILD_ROOT%{_infodir}
 
 make prefix=$RPM_BUILD_ROOT/usr install-strip
 
-strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
+strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
 	NEWS READ* ChangeLog
@@ -91,7 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) /usr/bin/xdelta
-%attr(755,root,root) /usr/lib/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_mandir}/man1/*
 
 %files devel
@@ -101,11 +101,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/bin/xdelta-config
 /usr/include/*
 
-%attr(755,root,root) /usr/lib/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 
 %files static
 %defattr(644,root,root,755)
-/usr/lib/lib*.a
+%{_libdir}/lib*.a
 
 %changelog
 * Wed Apr 21 1999 Piotr Czerwiñski <pius@pld.org.pl>
