@@ -67,7 +67,7 @@ Pakiet ten zawiera bibliotekê statyczn± XDELTA.
 %build
 autoconf
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target}\
+./configure %{_target_platform}\
 	--prefix=%{_prefix} \
 	--x-includes=/usr/X11R6/lib/glib/include
 make
