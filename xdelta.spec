@@ -2,13 +2,15 @@ Summary:	XDELTA - version control system
 Summary(pl):	XDELTA - system kontroli wersji
 Name:		xdelta
 Version:	1.1.1
-Release:	1
+Release:	2
 Copyright:	GPL
 Group:		Development/Version Control
 Group(pl):	Programowanie/Kontrola Wersji
 Source:		ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz
-URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html                                                   
-Requires:	glib = 1.2.1
+URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html
+BuildPrereq:	glib-devel
+BuildPrereq:	zlib-devel
+Requires:	glib >= 1.2.0
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -87,6 +89,7 @@ gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/* \
 rm -rf $RPM_BUILD_ROOT
 
 %files
+%defattr(644,root,root,755)
 %attr(755,root,root) /usr/bin/xdelta
 %attr(755,root,root) /usr/lib/lib*.so.*.*
 /usr/man/man1/*
@@ -101,9 +104,20 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/lib/lib*.so
 
 %files static
-%attr(644,root,root) /usr/lib/lib*.a
+%defattr(644,root,root,755)
+/usr/lib/lib*.a
 
 %changelog
+* Wed Apr 21 1999 Piotr Czerwiñski <pius@pld.org.pl>
+  [1.1.1-2]
+- recompiled on rpm 3.
+
+  by Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>:
+- updated to 1.1.1,
+- strip with --strip-unneeded shared libraries,
+- gzipping %doc instead bzippng2,
+- removed %post, %postun.
+
 * Sun Mar 21 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.6-1]
 - fix: "PreReq: /sbin/install-info" moved to devel,
