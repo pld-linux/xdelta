@@ -1,13 +1,15 @@
 Summary:	XDELTA - version control system
 Summary(pl):	XDELTA - system kontroli wersji
 Name:		xdelta
-Version:	1.0.0
-Release:	3d
+Version:	1.0.2
+Release:	1d
 Copyright:	GPL
 Group:		Development/Version Control
 Group(pl):	Programowanie/Kontrola Wersji
-Source:		ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz                                  
+#######		ftp://www.xcf.berkeley.edu/pub/xdelta
+Source:		%{name}-%{version}.tar.gz
 Patch0:         xdelta-info.patch
+Patch1:         xdelta-zlib.patch
 URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html                                                   
 PreReq:		/sbin/install-info
 BuildRoot:	/tmp/%{name}-%{version}-root
@@ -62,9 +64,12 @@ Pakiet ten zawiera bibliotekê statyczn± XDELTA.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+aclocal
+libtoolize --force
+CFLAGS=$RPM_OPT_FLAGS LDFLAGS=-s \
 ./configure \
 	--prefix=/usr \
 	--x-includes=/usr/X11R6/lib/glib/include
@@ -90,7 +95,7 @@ bzip2 -9 NEWS READ* xdelta.magic ChangeLog
 
 %preun devel
 if [ $1 = 0 ]; then
-	/sbin/install-info --delete /usr/info/xdelta.info.gz /etc/info-dir
+    /sbin/install-info --delete /usr/info/xdelta.info.gz /etc/info-dir
 fi
 
 %clean
@@ -113,9 +118,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/lib/*.so
 
 %files static
-%attr(755,root,root) /usr/lib/lib*.a
+%defattr(644,root,root,755) 
+/usr/lib/lib*.a
 
 %changelog
+* Fri Feb 05 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [1.0.2-1d]
+- updated to 1.0.2,
+- fixed -lz problem ? ;)
+- fixed permission of static library.
+
 * Sat Jan 23 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.0-3d]
 - removed xdelta.magic from doc (this is now included in latest file packa).
