@@ -7,8 +7,6 @@ Version:	1.1.3
 Release:	1
 License:	GPL
 Group:		Development/Version Control
-Group(de):	Entwicklung/Versionkontrolle
-Group(pl):	Programowanie/Zarz╠dzanie wersjami
 Source0:	http://prdownloads.sourceforge.net/xdelta/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-use_sys_getopt.patch
@@ -63,13 +61,6 @@ Summary:	XDELTA - header files
 Summary(pl):	XDELTA - pliki nagЁСwkowe
 Summary(pt_BR):	Arquivos de desenvolvimento xdelta
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
@@ -88,13 +79,6 @@ Summary:	XDELTA - static library
 Summary(pl):	XDELTA - biblioteka statyczna
 Summary(pt_BR):	Bibliotecas estАticas para desenvolvimento com xdelta
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
