@@ -100,7 +100,7 @@ rm -f missing
 libtoolize --copy --force
 aclocal
 autoconf
-automake -a -c
+automake -a -c -f
 %configure \
 	--x-includes=%{_prefix}/X11R6/lib/glib/include
 %{__make}
