@@ -94,7 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644, root, root, 755)
 %doc NEWS README
 /usr/include/*
-/usr/info/*
+/usr/info/xdelta.info*
 /usr/lib/lib*.so
 
 %files static
@@ -103,6 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Thu Nov 26 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.0-2]
+- fixed: removed /usr/info/dir from devel,
 - removed xdelta.magic and non existing doc/xdelta.txt from %doc,
 - fixed --entry text on {un}registering info page for libtool in %post
   %preun in devel.
