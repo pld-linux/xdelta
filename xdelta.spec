@@ -73,13 +73,13 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/info
+install -d $RPM_BUILD_ROOT%{_infodir}
 
 make prefix=$RPM_BUILD_ROOT/usr install-strip
 
 strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/* \
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
 	NEWS READ* ChangeLog
 
 %post   -p /sbin/ldconfig
@@ -92,7 +92,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) /usr/bin/xdelta
 %attr(755,root,root) /usr/lib/lib*.so.*.*
-/usr/man/man1/*
+%{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
@@ -159,7 +159,7 @@ rm -rf $RPM_BUILD_ROOT
 
 * Thu Nov 26 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.0-2]
-- fixed: removed /usr/info/dir from devel,
+- fixed: removed %{_infodir}/dir from devel,
 - removed xdelta.magic and non existing doc/xdelta.txt from %doc,
 - fixed --entry text on {un}registering info page for libtool in %post
   %preun in devel.
