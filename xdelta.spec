@@ -2,7 +2,7 @@ Summary:	XDELTA - version control system
 Summary(pl):	XDELTA - system kontroli wersji
 Name:		xdelta
 Version:	1.1.1
-Release:	3
+Release:	4
 Copyright:	GPL
 Group:		Development/Version Control
 Group(pl):	Programowanie/Kontrola Wersji
@@ -14,13 +14,24 @@ Requires:	glib >= 1.2.0
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
-XDELTA (`X' for XCF) is a version-control library and file-format designed as
-a replacement for RCS.  The XDELTA library performs its work independently of
-the actual file-format used to encode the version-file and is intended to be
-used by various higher-level programs such as PRCS.
+XDelta (X for XCF: the eXperimental Computing Facility at Berkeley) is a
+library interface and binary delta generator (like a diff program for
+binaries) and an RCS. These changes (deltas) are similar to the output of the
+"diff" program in that they may be used to store and transmit only the
+changes between files. However, unlike diff, the output of XDelta is not
+expressed in a human-readable format--XDelta can also also apply these
+deltas to a copy of the original file(s). XDelta uses a fast, linear
+algorithm and performs well on both binary and text files. XDelta typically
+outperforms GNU diff in both time and generated-delta-size, even for plain
+text files. XDelta also includes a simple implementation of the Rsync
+algorithm and several advanced features for implementing RCS-like
+file-archival with.
 
-XDELTA uses a binary file-delta algorithm to replace the standard diff
-program used by RCS.
+The Xdelta library performs its work independently of the actual format used
+to encode the file and is intended to be used by various higher-level
+programs such as XCF's Project Revision Control System (PRCS). PRCS is a
+front end for a version control toolset. Xdelta uses a binary file delta
+algorithm to replace the standard diff program used by RCS.
 
 %description -l pl
 XDELTA (`X' od XCF) jest bibliotek± systemu kontroli wersji tworzona jako
@@ -28,9 +39,6 @@ zamiennik RCS. Biblioteka XDELTA wykonuje ró¿ne czynno¶ci niezale¿nie od
 bierz±cego formatu plików, u¿ywanych do kodowania plików baz danych, systemu
 kontroli wersji i zaprojektowana jest do u¿ywania w ró¿nych wysoko-poziomowych
 systemach kontroli wersji jak PRCS.
-
-XDELTA u¿ywa binarnego formatu zamiast standardowego diif-a u¿ywanego przez
-RCS.
 
 %package devel
 Summary:	XDELTA - header files
