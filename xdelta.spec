@@ -3,25 +3,22 @@ Summary(es):	patch y diff para archivos binarios
 Summary(pl):	XDELTA - system kontroli wersji
 Summary(pt_BR):	patch e diff para arquivos binários
 Name:		xdelta
-Version:	1.1.1
-Release:	12
+Version:	1.1.3
+Release:	1
 License:	GPL
 Group:		Development/Version Control
 Group(de):	Entwicklung/Versionkontrolle
 Group(pl):	Programowanie/Zarz±dzanie wersjami
-Source0:	ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz
-Patch0:		%{name}-info.patch
-Patch1:		xdelta-ac_fixes.patch
-Patch2:		xdelta-use_sys_getopt.patch
+Source0:	http://prdownloads.sourceforge.net/xdelta/%{name}-%{version}.tar.gz
+Patch0:		%{name}-ac_fixes.patch
+Patch1:		%{name}-use_sys_getopt.patch
+Patch2:		%{name}-am15.patch
 URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib-devel >= 1.2.0
 BuildRequires:	libtool
 BuildRequires:	zlib-devel
-Requires:	glib >= 1.2.0
-Requires(post):		/sbin/ldconfig
-Requires(postun):	/sbin/ldconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -116,9 +113,11 @@ Bibliotecas estáticas para desenvolvimento com xdelta.
 %patch2 -p1
 
 %build
-libtoolize -c -f
+rm -f missing
+libtoolize --copy --force
 aclocal
 autoconf
+automake -a -c
 %configure \
 	--x-includes=%{_prefix}/X11R6/lib/glib/include
 %{__make}
@@ -132,13 +131,8 @@ rm -rf $RPM_BUILD_ROOT
 
 gzip -9nf NEWS READ* ChangeLog
 
-%post
-/sbin/ldconfig
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-
-%postun
-/sbin/ldconfig
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
