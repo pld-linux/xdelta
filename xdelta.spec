@@ -6,8 +6,9 @@ Release:	3d
 Copyright:	GPL
 Group:		Development/Version Control
 Group(pl):	Programowanie/Kontrola Wersji
-URL:		ftp://www.xcf.berkeley.edu/pub/xdelta
-Source:		%{name}-%{version}.tar.gz
+Source:		ftp://www.xcf.berkeley.edu/pub/xdelta/%{name}-%{version}.tar.gz                                  
+Patch0:         xdelta-info.patch
+URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html                                                   
 PreReq:		/sbin/install-info
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -60,27 +61,26 @@ Pakiet ten zawiera bibliotekê statyczn± XDELTA.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-CFLAGS=$RPM_OPT_FLAGS LDFLAGS=-s \
-    ./configure	\
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+./configure \
 	--prefix=/usr \
-	--x-includes=/usr/lib/glib/include
+	--x-includes=/usr/X11R6/lib/glib/include
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT/usr/info
+
 make prefix=$RPM_BUILD_ROOT/usr install-strip
 
 install doc/xdelta.info $RPM_BUILD_ROOT/usr/info
 
-gzip -9nf $RPM_BUILD_ROOT/usr/info/xdelta.info
+gzip -9nf $RPM_BUILD_ROOT/usr/{info/*.info*,man/man1/*}
 
-bzip2 -9 $RPM_BUILD_ROOT/usr/man/man1/* NEWS READ* xdelta.magic ChangeLog
-
-chmod 755 $RPM_BUILD_ROOT/usr/lib/*.so.*
+bzip2 -9 NEWS READ* xdelta.magic ChangeLog
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -90,7 +90,7 @@ chmod 755 $RPM_BUILD_ROOT/usr/lib/*.so.*
 
 %preun devel
 if [ $1 = 0 ]; then
-   /sbin/install-info --delete /usr/info/xdelta.info.gz /etc/info-dir
+	/sbin/install-info --delete /usr/info/xdelta.info.gz /etc/info-dir
 fi
 
 %clean
@@ -113,11 +113,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/lib/*.so
 
 %files static
-%attr(644,root,root,755) /usr/lib/lib*.a
+%attr(755,root,root) /usr/lib/lib*.a
 
 %changelog
-* Sat Jan 23 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+* Sat Jan 23 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.0-3d]
+- removed xdelta.magic from doc (this is now included in latest file packa).
+- changed --x-includes to /usr/X11R6/lib/glib/include,
+- standarized {un}registering info pages (added xdelta-info.patch),
+- gzipping instead bzipping2 man pages.
+
+* Sat Jan 23 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
 - added Group(pl),  
 - compressed man pages && documentation (bizp2),
 - fixed %post && %preun,
