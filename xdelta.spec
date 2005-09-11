@@ -81,7 +81,7 @@ Summary:	XDELTA - header files
 Summary(pl):	XDELTA - pliki nag³ówkowe
 Summary(pt_BR):	Arquivos de desenvolvimento xdelta
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 This package contains the XDELTA header files required to develop
@@ -99,7 +99,7 @@ Summary:	XDELTA - static library
 Summary(pl):	XDELTA - biblioteka statyczna
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com xdelta
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 This package contains the XDELTA static libraries.
