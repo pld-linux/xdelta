@@ -1,0 +1,12 @@
+diff -burN xdelta-1.1.3.orig/xdmain.c xdelta-1.1.3/xdmain.c
+--- xdelta-1.1.3.orig/xdmain.c	2005-12-29 14:57:56.000000000 +0000
++++ xdelta-1.1.3/xdmain.c	2005-12-29 14:58:23.000000000 +0000
+@@ -64,7 +64,7 @@
+ 
+ #include "xdelta.h"
+ 
+-extern HandleFuncTable xd_handle_table;
++static HandleFuncTable xd_handle_table;
+ 
+ #define XD_PAGE_SIZE (1<<20)
+ 
