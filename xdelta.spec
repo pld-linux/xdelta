@@ -1,7 +1,7 @@
 Summary:	XDELTA - version control system
-Summary(es.UTF-8):   patch y diff para archivos binarios
-Summary(pl.UTF-8):   XDELTA - system kontroli wersji
-Summary(pt_BR.UTF-8):   patch e diff para arquivos binários
+Summary(es.UTF-8):	patch y diff para archivos binarios
+Summary(pl.UTF-8):	XDELTA - system kontroli wersji
+Summary(pt_BR.UTF-8):	patch e diff para arquivos binários
 Name:		xdelta
 Version:	1.1.3
 Release:	3
@@ -79,8 +79,8 @@ arquivos binários.
 
 %package devel
 Summary:	XDELTA - header files
-Summary(pl.UTF-8):   XDELTA - pliki nagłówkowe
-Summary(pt_BR.UTF-8):   Arquivos de desenvolvimento xdelta
+Summary(pl.UTF-8):	XDELTA - pliki nagłówkowe
+Summary(pt_BR.UTF-8):	Arquivos de desenvolvimento xdelta
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -97,8 +97,8 @@ Esse pacote contém os arquivos de desenvolvimento do xdelta.
 
 %package static
 Summary:	XDELTA - static library
-Summary(pl.UTF-8):   XDELTA - biblioteka statyczna
-Summary(pt_BR.UTF-8):   Bibliotecas estáticas para desenvolvimento com xdelta
+Summary(pl.UTF-8):	XDELTA - biblioteka statyczna
+Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com xdelta
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
