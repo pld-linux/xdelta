@@ -1,7 +1,7 @@
 Summary:	XDELTA - version control system
-Summary(es):	patch y diff para archivos binarios
-Summary(pl):	XDELTA - system kontroli wersji
-Summary(pt_BR):	patch e diff para arquivos binários
+Summary(es.UTF-8):   patch y diff para archivos binarios
+Summary(pl.UTF-8):   XDELTA - system kontroli wersji
+Summary(pt_BR.UTF-8):   patch e diff para arquivos binÃ¡rios
 Name:		xdelta
 Version:	1.1.3
 Release:	3
@@ -44,43 +44,43 @@ higher-level programs such as XCF's Project Revision Control System
 a binary file delta algorithm to replace the standard diff program
 used by RCS.
 
-%description -l es
-xdelta es como las órdenes patch y diff, pero también funciona con
+%description -l es.UTF-8
+xdelta es como las Ã³rdenes patch y diff, pero tambiÃ©n funciona con
 archivos binarios.
 
-%description -l pl
+%description -l pl.UTF-8
 XDelta (`X' od XCF - eXperimental Computing Facility w Berkeley) jest
-bibliotek± i generatorem binarnych delt (ró¿nic podobnych do tych
-tworzonych przez program diff, ale dla binariów) oraz systemem
-kontroli wersji. Te zmiany (delty) s± podobne do wyj¶cia programu diff
-tak¿e w tym, ¿e mog± byæ u¿ywane do przechowywania i transmisji tylko
-zmian miêdzy plikami. Jednak, w przeciwieñstwie do diffa, wyj¶cie
-XDelty nie jest wyra¿one w postaci czytelnej dla cz³owieka; XDelta
-mo¿e tak¿e nanie¶æ te zmiany na kopiê oryginalnego pliku (plików).
-XDelta u¿ywa szybkiego, liniowego algorytmu i dobrze siê sprawdza
-zarówno na binarnych, jak i tekstowych plikach. Algorytm XDelta zwykle
-jest wydajniejszy od GNU diffa zarówno pod wzglêdem czasu jak i
-rozmiaru wygenerowanych ró¿nic, nawet dla plików czysto tekstowych.
-XDelta zawiera tak¿e przyk³adow± implementacjê algorytmy Rsync i kilka
-zaawansowanych mo¿liwo¶ci do implementowania archiwizacji plików
+bibliotekÄ… i generatorem binarnych delt (rÃ³Å¼nic podobnych do tych
+tworzonych przez program diff, ale dla binariÃ³w) oraz systemem
+kontroli wersji. Te zmiany (delty) sÄ… podobne do wyjÅ›cia programu diff
+takÅ¼e w tym, Å¼e mogÄ… byÄ‡ uÅ¼ywane do przechowywania i transmisji tylko
+zmian miÄ™dzy plikami. Jednak, w przeciwieÅ„stwie do diffa, wyjÅ›cie
+XDelty nie jest wyraÅ¼one w postaci czytelnej dla czÅ‚owieka; XDelta
+moÅ¼e takÅ¼e nanieÅ›Ä‡ te zmiany na kopiÄ™ oryginalnego pliku (plikÃ³w).
+XDelta uÅ¼ywa szybkiego, liniowego algorytmu i dobrze siÄ™ sprawdza
+zarÃ³wno na binarnych, jak i tekstowych plikach. Algorytm XDelta zwykle
+jest wydajniejszy od GNU diffa zarÃ³wno pod wzglÄ™dem czasu jak i
+rozmiaru wygenerowanych rÃ³Å¼nic, nawet dla plikÃ³w czysto tekstowych.
+XDelta zawiera takÅ¼e przykÅ‚adowÄ… implementacjÄ™ algorytmy Rsync i kilka
+zaawansowanych moÅ¼liwoÅ›ci do implementowania archiwizacji plikÃ³w
 podobnej do RCS.
 
-Biblioteka XDelta dzia³a dobrze niezale¿nie od formatu u¿ytego przy
-kodowaniu pliku i jest przeznaczona do u¿ywania w ró¿nych
+Biblioteka XDelta dziaÅ‚a dobrze niezaleÅ¼nie od formatu uÅ¼ytego przy
+kodowaniu pliku i jest przeznaczona do uÅ¼ywania w rÃ³Å¼nych
 wysokopoziomowych programach takich jak system kontroli wersji z XCF
-(PRCS - Project Revision Control System), bêd±cy frontendem do
-zbioru narzêdzi s³u¿±cych do kontroli wersji, w którym jest u¿ywany
-algorytm binarnych ró¿nic XDelta zamiast standardowego diffa u¿ywanego
+(PRCS - Project Revision Control System), bÄ™dÄ…cy frontendem do
+zbioru narzÄ™dzi sÅ‚uÅ¼Ä…cych do kontroli wersji, w ktÃ³rym jest uÅ¼ywany
+algorytm binarnych rÃ³Å¼nic XDelta zamiast standardowego diffa uÅ¼ywanego
 przez RCS.
 
-%description -l pt_BR
-xdelta é como os comandos patch e diff, mas também funciona com
-arquivos binários.
+%description -l pt_BR.UTF-8
+xdelta Ã© como os comandos patch e diff, mas tambÃ©m funciona com
+arquivos binÃ¡rios.
 
 %package devel
 Summary:	XDELTA - header files
-Summary(pl):	XDELTA - pliki nag³ówkowe
-Summary(pt_BR):	Arquivos de desenvolvimento xdelta
+Summary(pl.UTF-8):   XDELTA - pliki nagÅ‚Ã³wkowe
+Summary(pt_BR.UTF-8):   Arquivos de desenvolvimento xdelta
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -88,28 +88,28 @@ Requires:	%{name} = %{version}-%{release}
 This package contains the XDELTA header files required to develop
 XDELTA-based applications.
 
-%description devel -l pl
-Pakiet ten zawiera pliki nag³ówkowe potrzebne przy tworzeniu aplikacji
-bazuj±cych na XDELTA.
+%description devel -l pl.UTF-8
+Pakiet ten zawiera pliki nagÅ‚Ã³wkowe potrzebne przy tworzeniu aplikacji
+bazujÄ…cych na XDELTA.
 
-%description devel -l pt_BR
-Esse pacote contém os arquivos de desenvolvimento do xdelta.
+%description devel -l pt_BR.UTF-8
+Esse pacote contÃ©m os arquivos de desenvolvimento do xdelta.
 
 %package static
 Summary:	XDELTA - static library
-Summary(pl):	XDELTA - biblioteka statyczna
-Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com xdelta
+Summary(pl.UTF-8):   XDELTA - biblioteka statyczna
+Summary(pt_BR.UTF-8):   Bibliotecas estÃ¡ticas para desenvolvimento com xdelta
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 This package contains the XDELTA static libraries.
 
-%description static -l pl
-Pakiet ten zawiera bibliotekê statyczn± XDELTA.
+%description static -l pl.UTF-8
+Pakiet ten zawiera bibliotekÄ™ statycznÄ… XDELTA.
 
-%description static -l pt_BR
-Bibliotecas estáticas para desenvolvimento com xdelta.
+%description static -l pt_BR.UTF-8
+Bibliotecas estÃ¡ticas para desenvolvimento com xdelta.
 
 %prep
 %setup -q
