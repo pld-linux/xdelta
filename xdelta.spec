@@ -14,7 +14,6 @@ Patch1:		%{name}-use_sys_getopt.patch
 Patch2:		%{name}-am15.patch
 Patch3:		%{name}-ac25x.patch
 Patch4:		%{name}-am18.patch
-Patch5:		%{name}-gcc4.patch
 URL:		http://www.xdelta.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -118,7 +117,6 @@ Bibliotecas estáticas para desenvolvimento com xdelta.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 
 %build
 %{__libtoolize}
