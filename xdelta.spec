@@ -3,19 +3,19 @@ Summary(es.UTF-8):	patch y diff para archivos binarios
 Summary(pl.UTF-8):	XDELTA - system kontroli wersji
 Summary(pt_BR.UTF-8):	patch e diff para arquivos binários
 Name:		xdelta
-Version:	1.1.3
-Release:	3
+Version:	1.1.4
+Release:	0.1
 License:	GPL
 Group:		Development/Version Control
-Source0:	http://dl.sourceforge.net/xdelta/%{name}-%{version}.tar.gz
-# Source0-md5:	08e964c28541605b6fe61c0dd6595516
+Source0:	http://xdelta.googlecode.com/files/%{name}-%{version}.tar.gz
+# Source0-md5:	1b896c01ebf0e353b7e3c3071b05f496
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-use_sys_getopt.patch
 Patch2:		%{name}-am15.patch
 Patch3:		%{name}-ac25x.patch
 Patch4:		%{name}-am18.patch
 Patch5:		%{name}-gcc4.patch
-URL:		http://www.XCF.Berkeley.EDU/~jmacd/xdelta.html
+URL:		http://www.xdelta.org
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib-devel >= 1.2.0
