@@ -1,5 +1,5 @@
---- xdelta-1.1.3/Makefile.am~	Tue Sep 25 20:09:08 2001
-+++ xdelta-1.1.3/Makefile.am	Tue Sep 25 20:22:07 2001
+--- xdelta-1.1.4/Makefile.am.orig	2007-03-15 22:30:08.000000000 +0000
++++ xdelta-1.1.4/Makefile.am	2007-03-15 22:30:33.000000000 +0000
 @@ -16,10 +16,10 @@
  
  lib_LTLIBRARIES = libxdelta.la
@@ -10,20 +10,20 @@
  
 -EXTRA_DIST = xd.ser $(SER_OUT) xdelta.magic xdelta.prj xdelta.m4	\
 +EXTRA_DIST = xd.ser xdelta.magic xdelta.prj xdelta.m4	\
- 	autogen.sh xdelta.dsp xdelta.dsw stamp-ser xdrsync.c
+ 	autogen.sh stamp-ser xdrsync.c
  
  SUBDIRS = libedsio . test doc djgpp
-@@ -38,13 +38,6 @@
+@@ -38,13 +38,4 @@
  	$(top_srcdir)/libedsio/edsio-comp xd.ser
  	touch stamp-ser
  
 -SER_OUT = xd_edsio.h xd_edsio.c
--
+ 
 -$(SER_OUT): stamp-ser
 -
 -SER_SOURCES   = xd_edsio.c
 -BUILT_SOURCES = $(SER_SOURCES)
 -
- #
- #
- #
+-#
+-#
+-#
