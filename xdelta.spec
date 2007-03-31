@@ -7,6 +7,7 @@ Version:	1.1.4
 Release:	0.1
 License:	GPL
 Group:		Development/Version Control
+#Source0Download: http://code.google.com/p/xdelta/downloads/list
 Source0:	http://xdelta.googlecode.com/files/%{name}-%{version}.tar.gz
 # Source0-md5:	1b896c01ebf0e353b7e3c3071b05f496
 Patch0:		%{name}-ac_fixes.patch
