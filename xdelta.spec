@@ -4,7 +4,7 @@ Summary(pl.UTF-8):	XDELTA - system kontroli wersji
 Summary(pt_BR.UTF-8):	patch e diff para arquivos binários
 Name:		xdelta
 Version:	1.1.4
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Development/Version Control
 #Source0Download: http://code.google.com/p/xdelta/downloads/list
