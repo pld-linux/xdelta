@@ -4,7 +4,7 @@ Summary(pl.UTF-8):	XDELTA - system kontroli wersji
 Summary(pt_BR.UTF-8):	patch e diff para arquivos binários
 Name:		xdelta
 Version:	1.1.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Version Control
 #Source0Download: http://code.google.com/p/xdelta/downloads/list
@@ -15,6 +15,7 @@ Patch1:		%{name}-use_sys_getopt.patch
 Patch2:		%{name}-am15.patch
 Patch3:		%{name}-ac25x.patch
 Patch4:		%{name}-am18.patch
+Patch5:		unresolved.patch
 URL:		http://www.xdelta.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -118,6 +119,7 @@ Bibliotecas estáticas para desenvolvimento com xdelta.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 %{__libtoolize}
@@ -146,14 +148,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc NEWS READ*
 %attr(755,root,root) %{_bindir}/xdelta
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libedsio.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libedsio.so.0
+%attr(755,root,root) %{_libdir}/libxdelta.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libxdelta.so.2
 %{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog
 %attr(755,root,root) %{_bindir}/xdelta-config
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libedsio.so
+%attr(755,root,root) %{_libdir}/libxdelta.so
 %{_libdir}/lib*.la
 %{_aclocaldir}/*
 %{_includedir}/*
