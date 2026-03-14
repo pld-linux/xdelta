@@ -4,11 +4,11 @@ Summary(pl.UTF-8):	XDELTA - system kontroli wersji
 Summary(pt_BR.UTF-8):	patch e diff para arquivos binários
 Name:		xdelta
 Version:	1.1.4
-Release:	2
-License:	GPL
+Release:	3
+License:	GPL v2+
 Group:		Development/Version Control
-#Source0Download: http://code.google.com/p/xdelta/downloads/list
-Source0:	http://xdelta.googlecode.com/files/%{name}-%{version}.tar.gz
+#Source0Download: https://github.com/bbidulock/xdelta/releases
+Source0:	https://github.com/bbidulock/xdelta/releases/download/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	1b896c01ebf0e353b7e3c3071b05f496
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-use_sys_getopt.patch
@@ -16,7 +16,8 @@ Patch2:		%{name}-am15.patch
 Patch3:		%{name}-ac25x.patch
 Patch4:		%{name}-am18.patch
 Patch5:		unresolved.patch
-URL:		http://www.xdelta.org/
+Patch6:		%{name}-gzFile-type.patch
+URL:		https://github.com/jmacd/xdelta
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib-devel >= 1.2.0
@@ -120,6 +121,7 @@ Bibliotecas estáticas para desenvolvimento com xdelta.
 %patch -P3 -p1
 %patch -P4 -p1
 %patch -P5 -p1
+%patch -P6 -p1
 
 %build
 %{__libtoolize}
@@ -127,6 +129,7 @@ Bibliotecas estáticas para desenvolvimento com xdelta.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+CFLAGS="%{rpmcflags} -std=gnu17" \
 %configure
 
 %{__make}

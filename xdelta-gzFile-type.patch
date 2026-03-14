@@ -1,0 +1,56 @@
+Fix type mismatch between FILE* and gzFile in XdFileHandle.
+The 'in' field is used as both FILE* (via fdopen) and gzFile (via gzdopen)
+depending on whether the input is compressed. Modern zlib defines gzFile
+as struct gzFile_s* which is incompatible with FILE*. Change the field
+type to void* and add casts in functions that use it as FILE*.
+Also fix incorrect gzFile* (double pointer) in test/xdeltatest.c.
+
+--- xdelta-1.1.4/xdmain.c.orig	2007-01-28 21:21:11.000000000 +0100
++++ xdelta-1.1.4/xdmain.c	2026-03-14 00:00:00.000000000 +0100
+@@ -178,7 +178,7 @@
+   guint    narrow_low;
+   guint    narrow_high;
+   guint    current_pos;
+-  FILE*    in;
++  void*    in;
+   gboolean (* in_read) (XdFileHandle* handle, void* buf, gint nbyte);
+   gboolean (* in_close) (XdFileHandle* handle);
+   gboolean in_compressed;
+@@ -496,7 +496,7 @@
+ static gboolean
+ xd_fread (XdFileHandle* fh, void* buf, gint nbyte)
+ {
+-  return fread (buf, nbyte, 1, fh->in) == 1;
++  return fread (buf, nbyte, 1, (FILE*) fh->in) == 1;
+ }
+
+ static gboolean
+@@ -508,7 +508,7 @@
+ static gboolean
+ xd_frclose (XdFileHandle* fh)
+ {
+-  return fclose (fh->in) == 0;
++  return fclose ((FILE*) fh->in) == 0;
+ }
+
+ static gboolean
+@@ -988,7 +988,7 @@
+
+   fh->current_pos = pos + fh->narrow_low;
+
+-  if (fseek (fh->in, fh->current_pos, SEEK_SET))
++  if (fseek ((FILE*) fh->in, fh->current_pos, SEEK_SET))
+     {
+       xd_error ("fseek failed: %s\n", g_strerror (errno));
+       return FALSE;
+--- xdelta-1.1.4/test/xdeltatest.c.orig	2007-01-28 21:21:11.000000000 +0100
++++ xdelta-1.1.4/test/xdeltatest.c	2026-03-14 00:00:00.000000000 +0100
+@@ -512,7 +512,7 @@
+   if (zlevel > 0 && starts_with (tp->name, "diff"))
+     {
+       Patch  *patch   = read_patch (out, & sbuf);
+-      gzFile *rewrite = gzopen (out->name, diff_gzargs);
++      gzFile rewrite = gzopen (out->name, diff_gzargs);
+
+       if (! rewrite) fail ();
+
